@@ -26,7 +26,7 @@ A comprehensive 5G network simulation platform featuring complete core network e
 ## ⚡ Quick Start
 
 ### Prerequisites
-![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20LTS-orange.svg)
+![Fedora](https://img.shields.io/badge/Fedora-39+-orange.svg)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![DOCA](https://img.shields.io/badge/DOCA%20SDK-2.6.0+-green.svg)
 
@@ -122,6 +122,7 @@ cd open-digital-platform-2_0/n6-interface-simulation
 - **5G Core**: Release 16/17 compliant
 - **DOCA SDK**: 2.6.0+
 - **Target Platforms**: x86_64, ARM64 (BlueField-3)
+- **Supported OS**: Fedora 39+, RHEL 9+
 
 ---
 

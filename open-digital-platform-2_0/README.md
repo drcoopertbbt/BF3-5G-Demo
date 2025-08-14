@@ -51,7 +51,7 @@ This enterprise-grade platform provides a complete 5G network simulation environ
 ## ⚡ Quick Start
 
 ### Prerequisites
-![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20LTS-orange.svg)
+![Fedora](https://img.shields.io/badge/Fedora-39+-orange.svg)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![DOCA](https://img.shields.io/badge/DOCA%20SDK-2.6.0+-green.svg)
 

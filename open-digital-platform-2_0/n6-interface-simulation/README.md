@@ -42,7 +42,7 @@ A high-performance, hardware-accelerated firewall and traffic management system 
 
 ### Prerequisites
 
-![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20LTS-orange.svg)
+![Fedora](https://img.shields.io/badge/Fedora-39+-orange.svg)
 ![BlueField](https://img.shields.io/badge/Hardware-BlueField--3%20DPU-blue.svg)
 ![DOCA](https://img.shields.io/badge/DOCA%20SDK-2.6.0+-green.svg)
 
@@ -280,7 +280,7 @@ This software is proprietary to NVIDIA Corporation and is protected by copyright
 - **Build Date**: August 2024
 - **DOCA SDK**: 2.6.0+
 - **Target Platform**: NVIDIA BlueField-3 DPU
-- **Supported OS**: Ubuntu 22.04 LTS, Ubuntu 20.04 LTS
+- **Supported OS**: Fedora 39+, RHEL 9+
 
 ---
 
