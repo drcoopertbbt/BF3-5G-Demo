@@ -26,16 +26,14 @@ Open Digital Platform 2.0 provides a comprehensive 5G network emulator, simulati
 ## 📋 Table of Contents
 - [🚀 Key Features](#-key-features)
 - [🏗️ Project Overview](#️-project-overview)
-- [📁 Project Structure](#-project-structure)
 - [⚡ Quick Start](#-quick-start)
+- [📁 Project Structure](#-project-structure)
 - [🔧 Components](#-components)
-  - [Core Network](#core-network)
-  - [RAN](#ran)
-  - [N6 Interface Firewall](#n6-interface-firewall)
-  - [PTP](#ptp)
 - [🚀 Running the Platform](#-running-the-platform)
 - [🧪 Testing](#-testing)
-- [📊 Logs and Telemetry](#-logs-and-telemetry)
+- [📊 Monitoring & Observability](#-monitoring--observability)
+- [📷 System Screenshots](#-system-screenshots)
+- [🔧 API Examples](#-api-examples)
 
 ## 🏗️ Project Overview
 
@@ -179,19 +177,20 @@ python test_5g_network.py
 python test_cu_du.py
 ```
 
+
+### Complete Testing Suite
+- ✅ **5G Core Functions**: AMF, SMF, UPF, NRF, AUSF, UDM, UDR, UDSF validation
+- 📡 **RAN Components**: CU, DU, RRU interaction testing
+- 🛡️ **N6 Firewall**: Hardware-accelerated packet filtering with BlueField-3 DPU
+- ⏱️ **PTP Synchronization**: Network timing validation
+- 📊 **Performance Benchmarks**: Throughput and latency testing
+
 ### N6 Interface Firewall Testing
 ```bash
 # Complete BlueField-3 DPU firewall validation
 cd n6-interface-simulation
 ./scripts/test_with_devemu.sh
 ```
-
-### Test Coverage
-- ✅ **5G Core Functions**: AMF, SMF, UPF, NRF, AUSF, UDM, UDR, UDSF
-- 📡 **RAN Components**: CU, DU, RRU interaction testing
-- 🛡️ **N6 Firewall**: Hardware-accelerated packet filtering
-- ⏱️ **PTP Synchronization**: Network timing validation
-- 📊 **Performance Benchmarks**: Throughput and latency testing
 
 For detailed testing instructions, refer to **test_instructions.md**.
 
