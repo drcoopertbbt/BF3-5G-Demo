@@ -25,63 +25,150 @@ interface ComplianceInspectorProps {
 }
 
 export function ComplianceInspector({ procedureName, isOpen, onClose }: ComplianceInspectorProps) {
-  // Mock 3GPP compliance data
-  const specSteps = [
-    { 
-      id: 1, 
-      name: 'Initial Registration Request', 
-      status: 'completed', 
-      specRef: 'TS 23.502 § 4.2.2.2.2',
-      timestamp: '14:35:20.123'
-    },
-    { 
-      id: 2, 
-      name: 'Identity Request/Response', 
-      status: 'completed', 
-      specRef: 'TS 23.502 § 4.2.2.2.3',
-      timestamp: '14:35:20.145'
-    },
-    { 
-      id: 3, 
-      name: 'Authentication', 
-      status: 'completed', 
-      specRef: 'TS 23.502 § 4.2.2.2.4',
-      timestamp: '14:35:20.167'
-    },
-    { 
-      id: 4, 
-      name: 'Security Mode Command', 
-      status: 'warning', 
-      specRef: 'TS 23.502 § 4.2.2.2.5',
-      timestamp: '14:35:20.189'
-    },
-    { 
-      id: 5, 
-      name: 'Registration Accept', 
-      status: 'completed', 
-      specRef: 'TS 23.502 § 4.2.2.2.6',
-      timestamp: '14:35:20.201'
-    },
-  ]
-
-  const payloadComparison = {
-    '3gppRequired': {
-      'messageType': 'Registration Request',
-      '5gmmCapability': 'Mandatory',
-      'ueSecurityCapability': 'Mandatory',
-      'requestedNSSAI': 'Optional',
-      'lastVisitedTAI': 'Optional',
-      'ueUsageSetting': 'Optional'
-    },
-    'simulatorPayload': {
-      'messageType': 'Registration Request',
-      '5gmmCapability': '0x01',
-      'ueSecurityCapability': '0x0001',
-      'requestedNSSAI': 'Missing',
-      'lastVisitedTAI': '0x012345',
-      'customField': 'Non-standard'
+  // Real 3GPP compliance data based on procedure type
+  const getSpecSteps = (procedure: string) => {
+    switch (procedure) {
+      case 'PDU Session Establishment':
+        return [
+          { 
+            id: 1, 
+            name: 'UE-requested PDU Session Establishment', 
+            status: 'completed', 
+            specRef: 'TS 23.502 § 4.3.2.2.1',
+            timestamp: '14:35:20.001',
+            interface: 'N1 (NAS)'
+          },
+          { 
+            id: 2, 
+            name: 'Create SM Context Request', 
+            status: 'completed', 
+            specRef: 'TS 29.502 § 5.2.2.2.1',
+            timestamp: '14:35:20.012',
+            interface: 'N11 (Nsmf_PDUSession)'
+          },
+          { 
+            id: 3, 
+            name: 'UPF Selection and N4 Session Establishment', 
+            status: 'completed', 
+            specRef: 'TS 29.244 § 5.4.2',
+            timestamp: '14:35:20.025',
+            interface: 'N4 (PFCP)'
+          },
+          { 
+            id: 4, 
+            name: 'Create SM Context Response with N2 SM Info', 
+            status: 'completed', 
+            specRef: 'TS 29.502 § 5.2.2.2.1',
+            timestamp: '14:35:20.089',
+            interface: 'N11 (Nsmf_PDUSession)'
+          },
+          { 
+            id: 5, 
+            name: 'N2 PDU Session Resource Setup Request', 
+            status: 'warning', 
+            specRef: 'TS 38.413 § 9.2.1.1',
+            timestamp: '14:35:20.105',
+            interface: 'N2 (NGAP)'
+          }
+        ]
+      case 'UE Registration':
+      default:
+        return [
+          { 
+            id: 1, 
+            name: 'Initial Registration Request', 
+            status: 'completed', 
+            specRef: 'TS 23.502 § 4.2.2.2.2',
+            timestamp: '14:35:20.123',
+            interface: 'N1 (NAS)'
+          },
+          { 
+            id: 2, 
+            name: 'Identity Request/Response', 
+            status: 'completed', 
+            specRef: 'TS 23.502 § 4.2.2.2.3',
+            timestamp: '14:35:20.145',
+            interface: 'N1 (NAS)'
+          },
+          { 
+            id: 3, 
+            name: 'Authentication', 
+            status: 'completed', 
+            specRef: 'TS 23.502 § 4.2.2.2.4',
+            timestamp: '14:35:20.167',
+            interface: 'N12 (Nausf_UEAuthentication)'
+          },
+          { 
+            id: 4, 
+            name: 'Security Mode Command', 
+            status: 'warning', 
+            specRef: 'TS 23.502 § 4.2.2.2.5',
+            timestamp: '14:35:20.189',
+            interface: 'N1 (NAS)'
+          },
+          { 
+            id: 5, 
+            name: 'Registration Accept', 
+            status: 'completed', 
+            specRef: 'TS 23.502 § 4.2.2.2.6',
+            timestamp: '14:35:20.201',
+            interface: 'N1 (NAS)'
+          },
+        ]
     }
   }
+  
+  const specSteps = getSpecSteps(procedureName)
+
+  const getPayloadComparison = (procedure: string) => {
+    switch (procedure) {
+      case 'PDU Session Establishment':
+        return {
+          '3gppRequired': {
+            'supi': 'Mandatory',
+            'pduSessionId': 'Mandatory', 
+            'dnn': 'Mandatory',
+            'sNssai': 'Mandatory',
+            'anType': 'Mandatory',
+            'ratType': 'Optional',
+            'ueLocation': 'Optional',
+            'gpsi': 'Optional'
+          },
+          'simulatorPayload': {
+            'supi': 'imsi-001010000000001',
+            'pduSessionId': 1,
+            'dnn': 'internet', 
+            'sNssai': '{"sst": 1, "sd": "010203"}',
+            'anType': '3GPP_ACCESS',
+            'ratType': 'NR',
+            'ueLocation': '{"nrLocation": {...}}',
+            'gpsi': 'msisdn-001010000000001'
+          }
+        }
+      case 'UE Registration':
+      default:
+        return {
+          '3gppRequired': {
+            'messageType': 'Registration Request',
+            '5gmmCapability': 'Mandatory',
+            'ueSecurityCapability': 'Mandatory',
+            'requestedNSSAI': 'Optional',
+            'lastVisitedTAI': 'Optional',
+            'ueUsageSetting': 'Optional'
+          },
+          'simulatorPayload': {
+            'messageType': 'Registration Request',
+            '5gmmCapability': '0x01',
+            'ueSecurityCapability': '0x0001',
+            'requestedNSSAI': 'Missing',
+            'lastVisitedTAI': '0x012345',
+            'customField': 'Non-standard'
+          }
+        }
+    }
+  }
+  
+  const payloadComparison = getPayloadComparison(procedureName)
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -156,6 +243,7 @@ export function ComplianceInspector({ procedureName, isOpen, onClose }: Complian
                       <TableRow>
                         <TableHead className="w-12">Status</TableHead>
                         <TableHead>Step</TableHead>
+                        <TableHead>Interface</TableHead>
                         <TableHead>3GPP Reference</TableHead>
                         <TableHead>Timestamp</TableHead>
                       </TableRow>
@@ -165,6 +253,11 @@ export function ComplianceInspector({ procedureName, isOpen, onClose }: Complian
                         <TableRow key={step.id}>
                           <TableCell>{getStatusIcon(step.status)}</TableCell>
                           <TableCell className="font-medium">{step.name}</TableCell>
+                          <TableCell>
+                            <Badge variant="secondary" className="text-xs">
+                              {step.interface}
+                            </Badge>
+                          </TableCell>
                           <TableCell>
                             <Badge variant="outline" className="text-xs">
                               {step.specRef}

@@ -238,6 +238,112 @@ async def create_ue_context(ue_id: str, context: Dict):
     logger.info(f"UE context created for {ue_id}")
     return {"message": "UE context created"}
 
+def trigger_pdu_session_creation(ue_context: dict):
+    """
+    Models the AMF sending a Create SM Context Request to the SMF over N11.
+    Implements 3GPP TS 23.502 Section 4.3.2.2.1 - PDU Session Establishment
+    This replaces the old custom API call with 3GPP-aligned endpoints.
+    """
+    global smf_url
+    if not smf_url:
+        logger.error("SMF URL not available - service discovery failed")
+        return None
+        
+    # 1. Define the 3GPP Service-Based Interface (SBI) endpoint on the SMF
+    # This comes from TS 29.502 (Nsmf_PDUSession service)
+    sm_context_endpoint = f"{smf_url}/nsmf-pdusession/v1/sm-contexts"
+
+    # 2. Construct a 3GPP-aligned JSON payload
+    # Parameter names like 'supi', 'dnn', 'sNssai' are defined in the specs.
+    pdu_session_data = {
+        "supi": ue_context.get("supi"), # Standardized identifier
+        "pduSessionId": ue_context.get("pduSessionId"),
+        "dnn": "internet",  # Data Network Name
+        "sNssai": {       # Single Network Slice Selection Assistance Information
+            "sst": 1,
+            "sd": "010203"
+        },
+        "gpsi": f"msisdn-{ue_context.get('imsi')}", # Generic Public Subscription Identifier
+        "anType": "3GPP_ACCESS",
+        "ratType": "NR",
+        "ueLocation": {
+            "nrLocation": {
+                "tai": {
+                    "plmnId": {"mcc": "001", "mnc": "01"},
+                    "tac": "000001"
+                },
+                "ncgi": {
+                    "plmnId": {"mcc": "001", "mnc": "01"},
+                    "nrCellId": "000000001"
+                }
+            }
+        }
+    }
+
+    logger.info(f"AMF -> SMF: Sending Create SM Context Request for SUPI {ue_context['supi']}")
+    
+    try:
+        with tracer.start_as_current_span("amf_pdu_session_create_request") as span:
+            span.set_attribute("3gpp.procedure", "pdu_session_establishment")
+            span.set_attribute("3gpp.interface", "N11")
+            span.set_attribute("3gpp.service", "Nsmf_PDUSession")
+            span.set_attribute("ue.supi", ue_context['supi'])
+            span.set_attribute("pdu.session.id", str(ue_context['pduSessionId']))
+            
+            response = requests.post(sm_context_endpoint, json=pdu_session_data, timeout=5)
+            response.raise_for_status()
+            
+            # The SMF's response will contain data needed for the RAN
+            sm_context_response = response.json()
+            logger.info(f"AMF <- SMF: Create SM Context Response received.")
+            
+            span.add_event("sm_context_created", {
+                "response.status": sm_context_response.get("status"),
+                "n2.sm.info.present": "n2SmInfo" in sm_context_response
+            })
+            
+            return sm_context_response
+            
+    except requests.RequestException as e:
+        logger.error(f"AMF -> SMF: Failed to create PDU session context: {e}")
+        return None
+
+@app.post("/amf/pdu-session/create")
+async def create_pdu_session(request_data: dict):
+    """
+    3GPP-compliant PDU Session Establishment procedure.
+    Reference: 3GPP TS 23.502 Section 4.3.2.2.1
+    """
+    logger.info(f"Starting PDU Session Establishment for UE: {request_data.get('ue_id')}")
+    
+    ue_id = request_data.get('ue_id')
+    if not ue_id or ue_id not in ue_contexts:
+        raise HTTPException(status_code=400, detail="Invalid or missing UE context")
+    
+    ue_context = ue_contexts[ue_id]
+    
+    # Ensure UE context has required 3GPP fields
+    if not ue_context.get('supi'):
+        ue_context['supi'] = f"imsi-00101{ue_id}"  # Generate SUPI if missing
+    if not ue_context.get('pduSessionId'):
+        ue_context['pduSessionId'] = len(ue_contexts) + 1  # Simple ID assignment
+    if not ue_context.get('imsi'):
+        ue_context['imsi'] = f"00101{ue_id}"
+    
+    # Trigger the 3GPP-compliant PDU session creation
+    sm_response = trigger_pdu_session_creation(ue_context)
+    
+    if sm_response:
+        logger.info(f"PDU Session Establishment successful for UE {ue_id}")
+        return {
+            "status": "SUCCESS",
+            "pduSessionId": ue_context['pduSessionId'],
+            "message": "PDU Session established successfully",
+            "smContextResponse": sm_response
+        }
+    else:
+        raise HTTPException(status_code=500, detail="PDU Session Establishment failed")
+
 @app.get("/metrics")
 async def metrics():
     return {"message": "Metrics are exposed on port 9100"}

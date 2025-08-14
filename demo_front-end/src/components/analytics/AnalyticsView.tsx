@@ -29,8 +29,10 @@ import {
   Search, 
   Filter,
   Download,
-  RefreshCw
+  RefreshCw,
+  MessageSquare
 } from 'lucide-react'
+import { MessageValidator } from '@/components/compliance/MessageValidator'
 
 interface AnalyticsViewProps {
   selectedNF: string | null
@@ -159,7 +161,7 @@ export function AnalyticsView({ selectedNF, simulationStatus }: AnalyticsViewPro
       
       <CardContent className="p-0 h-[calc(100%-100px)]">
         <Tabs defaultValue="metrics" className="h-full">
-          <TabsList className="grid w-full grid-cols-3 mx-4 mt-2">
+          <TabsList className="grid w-full grid-cols-4 mx-4 mt-2">
             <TabsTrigger value="metrics">
               <BarChart3 className="w-4 h-4 mr-2" />
               Metrics
@@ -171,6 +173,10 @@ export function AnalyticsView({ selectedNF, simulationStatus }: AnalyticsViewPro
             <TabsTrigger value="traces">
               <Activity className="w-4 h-4 mr-2" />
               Traces
+            </TabsTrigger>
+            <TabsTrigger value="compliance">
+              <MessageSquare className="w-4 h-4 mr-2" />
+              3GPP
             </TabsTrigger>
           </TabsList>
 
@@ -427,6 +433,14 @@ export function AnalyticsView({ selectedNF, simulationStatus }: AnalyticsViewPro
                 </Card>
               </div>
             </div>
+          </TabsContent>
+
+          {/* 3GPP Compliance Tab */}
+          <TabsContent value="compliance" className="p-0 h-[calc(100%-60px)]">
+            <MessageValidator 
+              selectedNF={selectedNF}
+              simulationStatus={simulationStatus}
+            />
           </TabsContent>
 
         </Tabs>
