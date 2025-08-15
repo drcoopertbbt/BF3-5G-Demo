@@ -23,59 +23,6 @@ A **world-class [5G network simulation platform](docs/README.md)** achieving **[
 
 ---
 
-## ⚡ Quick Start
-
-### Prerequisites
-![Fedora](https://img.shields.io/badge/Fedora-39+-orange.svg)
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![DOCA](https://img.shields.io/badge/DOCA%20SDK-2.6.0+-green.svg)
-
-### Installation & Launch
-```bash
-# 1. Clone repository
-git clone https://github.com/drcoopertbbt/BF3-5G-Demo.git
-cd BF3-5G-Demo
-
-# 2. Start 5G network emulation
-cd open-digital-platform-2_0
-pip install -r requirements.txt
-python main.py                    # Platform launcher
-
-# 3. Run comprehensive 100% compliance tests
-python test_100_compliance.py    # Full 3GPP validation
-
-# 4. Test N6 interface firewall (BlueField-3 DPU)
-cd n6-interface-simulation
-./scripts/test_with_devemu.sh     # Hardware firewall demo
-```
-
----
-
-## 📁 Project Structure
-
-```bash
-BF3-5G-Demo/
-├── 🏗️ open-digital-platform-2_0/      # Complete 5G network simulation
-│   ├── 5G_Emulator_API/              # Core 5G network functions
-│   │   ├── core_network/             # AMF-NAS, SMF, UPF, NRF, AUSF, UDM, PCF
-│   │   └── ran/                      # gNodeB, CU, DU
-│   ├── n6-interface-simulation/      # BlueField-3 DPU firewall
-│   ├── Dashboard/                    # Monitoring dashboards
-│   ├── test_100_compliance.py       # Comprehensive test suite
-│   └── main.py                       # Platform launcher
-├── 📚 docs/                          # Complete documentation
-│   ├── README.md                     # Main documentation
-│   ├── 3gpp-compliance.md           # 100% compliance details
-│   ├── core-network.md              # Core network components
-│   ├── ran-components.md            # RAN implementation
-│   └── testing.md                   # Testing framework
-├── 📚 N6.md                          # N6 interface documentation
-├── 🛡️ BF-Emulator.md                 # BlueField emulator guide
-└── 📋 README.md                      # This file
-```
-
----
-
 ## 🛡️ N6 Interface Firewall
 
 ### NEW: Production-Grade BlueField-3 DPU Integration
@@ -128,6 +75,59 @@ cd open-digital-platform-2_0/n6-interface-simulation
 - **[OpenTelemetry Integration](docs/testing.md#telemetry)**: Comprehensive telemetry data
 - **[Performance Monitoring](docs/testing.md#performance)**: Throughput and latency analysis
 - **[Security Analytics](open-digital-platform-2_0/n6-interface-simulation/README.md#monitoring)**: Firewall events and blocked traffic
+
+---
+
+## ⚡ Quick Start
+
+### Prerequisites
+![Fedora](https://img.shields.io/badge/Fedora-39+-orange.svg)
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![DOCA](https://img.shields.io/badge/DOCA%20SDK-2.6.0+-green.svg)
+
+### Installation & Launch
+```bash
+# 1. Clone repository
+git clone https://github.com/drcoopertbbt/BF3-5G-Demo.git
+cd BF3-5G-Demo
+
+# 2. Start 5G network emulation
+cd open-digital-platform-2_0
+pip install -r requirements.txt
+python main.py                    # Platform launcher
+
+# 3. Run comprehensive 100% compliance tests
+python test_100_compliance.py    # Full 3GPP validation
+
+# 4. Test N6 interface firewall (BlueField-3 DPU)
+cd n6-interface-simulation
+./scripts/test_with_devemu.sh     # Hardware firewall demo
+```
+
+---
+
+## 📁 Project Structure
+
+```bash
+BF3-5G-Demo/
+├── 🏗️ open-digital-platform-2_0/      # Complete 5G network simulation
+│   ├── 5G_Emulator_API/              # Core 5G network functions
+│   │   ├── core_network/             # AMF-NAS, SMF, UPF, NRF, AUSF, UDM, PCF
+│   │   └── ran/                      # gNodeB, CU, DU
+│   ├── n6-interface-simulation/      # BlueField-3 DPU firewall
+│   ├── Dashboard/                    # Monitoring dashboards
+│   ├── test_100_compliance.py       # Comprehensive test suite
+│   └── main.py                       # Platform launcher
+├── 📚 docs/                          # Complete documentation
+│   ├── README.md                     # Main documentation
+│   ├── 3gpp-compliance.md           # 100% compliance details
+│   ├── core-network.md              # Core network components
+│   ├── ran-components.md            # RAN implementation
+│   └── testing.md                   # Testing framework
+├── 📚 N6.md                          # N6 interface documentation
+├── 🛡️ BF-Emulator.md                 # BlueField emulator guide
+└── 📋 README.md                      # This file
+```
 
 ---
 
