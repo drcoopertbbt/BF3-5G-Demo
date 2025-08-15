@@ -158,6 +158,6 @@ BF3-5G-Demo/
 ![BlueField](https://img.shields.io/badge/BlueField--3-DPU%20Ready-green.svg)
 ![Enterprise](https://img.shields.io/badge/Enterprise-Grade-gold.svg)
 
-**[📖 Complete Documentation](docs/README.md)** | **[🎉 100% Compliance Details](docs/3gpp-compliance.md)** | **[🏗️ Core Network Guide](docs/core-network.md)** | **[📡 RAN Components](docs/ran-components.md)** | **[🧪 Testing Framework](docs/testing.md)** | **[🛡️ N6 Firewall Guide](open-digital-platform-2_0/n6-interface-simulation/README.md)** | **[📋 N6 Interface Spec](N6.md)** | **[🔧 BlueField Guide](BF-Emulator.md)**
+**[📖 Complete Documentation](docs/README.md)** | **[🎉 100% Compliance Details](docs/3gpp-compliance.md)** | **[🏗️ Core Network Guide](docs/core-network.md)** | **[📡 RAN Components](docs/ran-components.md)** | **[🧪 Testing Framework](docs/testing.md)** | **[🛡️ N6 Firewall Guide](open-digital-platform-2_0/n6-interface-simulation/README.md)** | **[📋 N6 Interface Spec](N6.md)** | **[🔧 BlueField Guide](BF-Emulator.md)** | **[📝 Changelog](CHANGELOG.md)**
 
 </div>
