@@ -10,16 +10,16 @@
 
 | Component | Compliance Level | 3GPP Specifications | Implementation Status |
 |-----------|------------------|-------------------|----------------------|
-| **AMF-NAS** | **100%** ✅ | TS 24.501, TS 29.502 | **Complete** - Full NAS protocol |
-| **SMF** | **100%** ✅ | TS 29.502, TS 29.244 | **Complete** - IPv6 + Advanced PFCP |
-| **UPF-Enhanced** | **100%** ✅ | TS 29.281, TS 29.244 | **Complete** - Real GTP-U + QoS |
-| **PCF** | **100%** ✅ | TS 29.507, TS 29.512, TS 29.514 | **Complete** - Dynamic Policy Control |
-| **NRF** | **100%** ✅ | TS 29.510, TS 29.500 | **Complete** - OAuth2 + Service Discovery |
-| **AUSF** | **100%** ✅ | TS 29.509, TS 33.501 | **Complete** - 5G-AKA Authentication |
-| **UDM** | **100%** ✅ | TS 29.503, TS 29.505 | **Complete** - Full Data Management |
-| **gNodeB** | **100%** ✅ | TS 38.413, TS 38.401 | **Complete** - Full NGAP Implementation |
-| **CU** | **100%** ✅ | TS 38.463, TS 38.331 | **Complete** - F1AP + RRC Protocols |
-| **DU** | **100%** ✅ | TS 38.321-323, TS 38.201 | **Complete** - Full Protocol Stack |
+| **AMF-NAS** | **100%** ✅ | [TS 24.501](https://www.3gpp.org/ftp/Specs/archive/24_series/24.501/), [TS 29.502](https://www.3gpp.org/ftp/Specs/archive/29_series/29.502/) | **Complete** - Full NAS protocol |
+| **SMF** | **100%** ✅ | [TS 29.502](https://www.3gpp.org/ftp/Specs/archive/29_series/29.502/), [TS 29.244](https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/) | **Complete** - IPv6 + Advanced PFCP |
+| **UPF-Enhanced** | **100%** ✅ | [TS 29.281](https://www.3gpp.org/ftp/Specs/archive/29_series/29.281/), [TS 29.244](https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/) | **Complete** - Real GTP-U + QoS |
+| **PCF** | **100%** ✅ | [TS 29.507](https://www.3gpp.org/ftp/Specs/archive/29_series/29.507/), [TS 29.512](https://www.3gpp.org/ftp/Specs/archive/29_series/29.512/), [TS 29.514](https://www.3gpp.org/ftp/Specs/archive/29_series/29.514/) | **Complete** - Dynamic Policy Control |
+| **NRF** | **100%** ✅ | [TS 29.510](https://www.3gpp.org/ftp/Specs/archive/29_series/29.510/), [TS 29.500](https://www.3gpp.org/ftp/Specs/archive/29_series/29.500/) | **Complete** - OAuth2 + Service Discovery |
+| **AUSF** | **100%** ✅ | [TS 29.509](https://www.3gpp.org/ftp/Specs/archive/29_series/29.509/), [TS 33.501](https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/) | **Complete** - 5G-AKA Authentication |
+| **UDM** | **100%** ✅ | [TS 29.503](https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/), [TS 29.505](https://www.3gpp.org/ftp/Specs/archive/29_series/29.505/) | **Complete** - Full Data Management |
+| **gNodeB** | **100%** ✅ | [TS 38.413](https://www.3gpp.org/ftp/Specs/archive/38_series/38.413/), [TS 38.401](https://www.3gpp.org/ftp/Specs/archive/38_series/38.401/) | **Complete** - Full NGAP Implementation |
+| **CU** | **100%** ✅ | [TS 38.463](https://www.3gpp.org/ftp/Specs/archive/38_series/38.463/), [TS 38.331](https://www.3gpp.org/ftp/Specs/archive/38_series/38.331/) | **Complete** - F1AP + RRC Protocols |
+| **DU** | **100%** ✅ | [TS 38.321](https://www.3gpp.org/ftp/Specs/archive/38_series/38.321/)-[323](https://www.3gpp.org/ftp/Specs/archive/38_series/38.323/), [TS 38.201](https://www.3gpp.org/ftp/Specs/archive/38_series/38.201/) | **Complete** - Full Protocol Stack |
 
 ---
 
@@ -291,30 +291,30 @@ class ComplianceTestSuite:
 ## 🌟 World-Class Standards Adherence
 
 ### Core Network Specifications (100% Complete)
-- ✅ **TS 23.501**: 5G System architecture - **Complete**
-- ✅ **TS 23.502**: 5G System procedures - **Complete**
-- ✅ **TS 24.501**: NAS protocol - **Complete**
-- ✅ **TS 29.500**: Service-based architecture - **Complete**
-- ✅ **TS 29.502**: Session management services - **Complete**
-- ✅ **TS 29.503**: Unified data management - **Complete**
-- ✅ **TS 29.507**: Policy control services - **Complete**
-- ✅ **TS 29.509**: Authentication services - **Complete**
-- ✅ **TS 29.510**: Network repository services - **Complete**
-- ✅ **TS 29.512**: Policy control triggers - **Complete**
-- ✅ **TS 29.514**: AM policy control - **Complete**
-- ✅ **TS 29.244**: PFCP protocol - **Complete**
-- ✅ **TS 29.281**: GTP-U protocol - **Complete**
-- ✅ **TS 33.501**: Security architecture - **Complete**
+- ✅ **[TS 23.501](https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/)**: 5G System architecture - **Complete**
+- ✅ **[TS 23.502](https://www.3gpp.org/ftp/Specs/archive/23_series/23.502/)**: 5G System procedures - **Complete**
+- ✅ **[TS 24.501](https://www.3gpp.org/ftp/Specs/archive/24_series/24.501/)**: NAS protocol - **Complete**
+- ✅ **[TS 29.500](https://www.3gpp.org/ftp/Specs/archive/29_series/29.500/)**: Service-based architecture - **Complete**
+- ✅ **[TS 29.502](https://www.3gpp.org/ftp/Specs/archive/29_series/29.502/)**: Session management services - **Complete**
+- ✅ **[TS 29.503](https://www.3gpp.org/ftp/Specs/archive/29_series/29.503/)**: Unified data management - **Complete**
+- ✅ **[TS 29.507](https://www.3gpp.org/ftp/Specs/archive/29_series/29.507/)**: Policy control services - **Complete**
+- ✅ **[TS 29.509](https://www.3gpp.org/ftp/Specs/archive/29_series/29.509/)**: Authentication services - **Complete**
+- ✅ **[TS 29.510](https://www.3gpp.org/ftp/Specs/archive/29_series/29.510/)**: Network repository services - **Complete**
+- ✅ **[TS 29.512](https://www.3gpp.org/ftp/Specs/archive/29_series/29.512/)**: Policy control triggers - **Complete**
+- ✅ **[TS 29.514](https://www.3gpp.org/ftp/Specs/archive/29_series/29.514/)**: AM policy control - **Complete**
+- ✅ **[TS 29.244](https://www.3gpp.org/ftp/Specs/archive/29_series/29.244/)**: PFCP protocol - **Complete**
+- ✅ **[TS 29.281](https://www.3gpp.org/ftp/Specs/archive/29_series/29.281/)**: GTP-U protocol - **Complete**
+- ✅ **[TS 33.501](https://www.3gpp.org/ftp/Specs/archive/33_series/33.501/)**: Security architecture - **Complete**
 
 ### RAN Specifications (100% Complete)
-- ✅ **TS 38.401**: NG-RAN architecture - **Complete**
-- ✅ **TS 38.413**: NGAP protocol - **Complete**
-- ✅ **TS 38.463**: F1AP protocol - **Complete**
-- ✅ **TS 38.331**: RRC protocol - **Complete**
-- ✅ **TS 38.321**: MAC protocol - **Complete**
-- ✅ **TS 38.322**: RLC protocol - **Complete**
-- ✅ **TS 38.323**: PDCP protocol - **Complete**
-- ✅ **TS 38.201**: Physical layer - **Complete**
+- ✅ **[TS 38.401](https://www.3gpp.org/ftp/Specs/archive/38_series/38.401/)**: NG-RAN architecture - **Complete**
+- ✅ **[TS 38.413](https://www.3gpp.org/ftp/Specs/archive/38_series/38.413/)**: NGAP protocol - **Complete**
+- ✅ **[TS 38.463](https://www.3gpp.org/ftp/Specs/archive/38_series/38.463/)**: F1AP protocol - **Complete**
+- ✅ **[TS 38.331](https://www.3gpp.org/ftp/Specs/archive/38_series/38.331/)**: RRC protocol - **Complete**
+- ✅ **[TS 38.321](https://www.3gpp.org/ftp/Specs/archive/38_series/38.321/)**: MAC protocol - **Complete**
+- ✅ **[TS 38.322](https://www.3gpp.org/ftp/Specs/archive/38_series/38.322/)**: RLC protocol - **Complete**
+- ✅ **[TS 38.323](https://www.3gpp.org/ftp/Specs/archive/38_series/38.323/)**: PDCP protocol - **Complete**
+- ✅ **[TS 38.201](https://www.3gpp.org/ftp/Specs/archive/38_series/38.201/)**: Physical layer - **Complete**
 
 ---
 
