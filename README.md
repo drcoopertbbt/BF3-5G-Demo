@@ -9,6 +9,10 @@
 
 A **world-class [5G network simulation platform](docs/README.md)** achieving **[100% 3GPP Release 16 compliance](docs/3gpp-compliance.md)** with complete [core network emulation](docs/core-network.md), full [RAN implementation](docs/ran-components.md), and **production-grade [N6 interface firewall](N6.md)** powered by [NVIDIA BlueField-3 DPUs](BF-Emulator.md) with [DOCA SDK](open-digital-platform-2_0/n6-interface-simulation/README.md).
 
+## 🏗️ Architecture Integration with DOCA SDK
+
+The platform leverages [NVIDIA's DOCA SDK](BF-Emulator.md) and [BlueField-3 DPU emulation](open-digital-platform-2_0/n6-interface-simulation/README.md) to create a unique hybrid architecture where the 5G core network simulation interfaces directly with hardware-accelerated packet processing. The [UPF-Enhanced](open-digital-platform-2_0/5G_Emulator_API/core_network/upf_enhanced.py) component implements real [GTP-U packet processing](docs/core-network.md#gtp-u) that seamlessly integrates with the [DOCA Flow API](open-digital-platform-2_0/n6-interface-simulation/README.md#doca-flow), enabling the N6 interface firewall to process 5G user plane traffic at line-rate speeds up to 400 Gbps. This integration allows the platform to bridge the gap between software-based 5G network simulation and hardware-accelerated security processing, providing a realistic environment for testing 5G network behavior under real-world traffic conditions with production-grade firewall capabilities.
+
 ---
 
 ## 🚀 Key Features
